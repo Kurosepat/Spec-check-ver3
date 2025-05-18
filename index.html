@@ -1,16 +1,25 @@
 <html>
   <head>
-    <title>明細書AIチェックツール</title>
+    <title>明細書・特許請求の範囲・要約書AIチェック</title>
   </head>
   <body>
     <h1>明細書AIチェックツール</h1>
+    <div style="background-color: #ffeb3b; padding: 10px; border-radius: 5px;">
+      <strong>【注意事項】</strong>
+      <p>本ツールは完全なチェックを保証するものではありません。チェック結果は明細書の品質向上を目的とした参考情報としてご利用ください。</p>
+      <p>図面や明細書中の画像（数式や写真等の画像）はチェック対象外です。</p>
+    </div>
     <form id="uploadForm">
-      <label for="docFile">明細書ファイル（Word）:</label>
+      <h3>明細書ファイルアップロード</h3>
+      <p>ここに明細書ファイルをドラッグ＆ドロップ またはクリックして選択</p>
       <input type="file" id="docFile" name="docFile" accept=".docx">
-      <br>
-      <label for="imageFile">図面ファイル（PDF）:</label>
+      <p><strong>注：明細書はWordファイル(.docx)をご利用ください</strong></p>
+      
+      <h3>図面ファイルアップロード</h3>
+      <p>ここに図面ファイルをドラッグ＆ドロップ またはクリックして選択</p>
       <input type="file" id="imageFile" name="imageFile" accept=".pdf">
-      <br>
+      <p><strong>注：図面はPDF（OCR処理推奨）ファイルをご利用ください。特に、ブロック図やフローチャートのように文字を含む場合は、OCR処理していない場合は精度が低下する可能性がありますので、OCR処理を強くお勧めします。</strong></p>
+      
       <button type="submit">AIチェックを開始します</button>
     </form>
   </body>
