@@ -122,14 +122,14 @@
             <p id="docFileName">ここに明細書ファイルをドラッグ＆ドロップ またはクリックして選択</p>
             <input type="file" id="docFile" name="docFile" accept=".docx" onchange="updateFileName('docFile', 'docFileName')">
         </div>
-        <p><strong>注：明細書はWordファイル(.docx)をご利用ください</strong></p>
+        <p><strong>注：明細書はWordファイル(.docx)をご利用ください。</strong></p>
 
         <h3>図面ファイルアップロード</h3>
         <div class="file-upload-container" onclick="document.getElementById('imageFile').click();">
             <p id="imageFileName">ここに図面ファイルをドラッグ＆ドロップ またはクリックして選択</p>
             <input type="file" id="imageFile" name="imageFile" accept=".pdf" onchange="updateFileName('imageFile', 'imageFileName')">
         </div>
-        <p><strong>注：図面はPDF（OCR処理推奨）ファイルをご利用ください。特に、ブロック図やフローチャートのように文字を含む場合は、OCR処理していない場合は精度が低下する可能性がありますので、OCR処理を強くお勧めします。</strong></p>
+        <p><strong>注：図面はPDF（OCR処理推奨）ファイルをご利用ください。特に、ブロック図やフローチャートのように文字を含む場合は、OCR処理することを強くお勧めします。OCR処理していないPDFファイルの場合は精度が低下する可能性があります。</strong></p>
 
         <button type="submit">AIチェックを開始します</button>
     </form>
