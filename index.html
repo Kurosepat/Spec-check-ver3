@@ -4,25 +4,113 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>明細書・特許請求の範囲・要約書AIチェック</title>
+    <style>
+        /* 全体のレイアウト */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center; /* 中央揃え */
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        /* 注意事項のスタイル */
+        .warning-box {
+            background-color: #ffeb3b;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        /* アップロードフォーム */
+        form {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            width: 100%;
+            max-width: 600px;
+            text-align: left;
+        }
+
+        /* 各アップロードセクション */
+        h3 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 14px;
+            margin: 5px 0;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .file-upload-container {
+            width: 100%;
+            padding: 40px;
+            border: 2px dashed #4caf50;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+            text-align: center;
+            background-color: #e8f5e9;
+        }
+
+        .file-upload-container:hover {
+            background-color: #c8e6c9;
+        }
+
+        .file-upload-container p {
+            margin: 0;
+            color: #388e3c;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #388e3c;
+        }
+    </style>
 </head>
 <body>
     <h1>明細書AIチェックツール</h1>
-    <div style="background-color: #ffeb3b; padding: 10px; border-radius: 5px;">
+    <div class="warning-box">
         <strong>【注意事項】</strong>
         <p>本ツールは完全なチェックを保証するものではありません。チェック結果は明細書の品質向上を目的とした参考情報としてご利用ください。</p>
         <p>図面や明細書中の画像（数式や写真等の画像）はチェック対象外です。</p>
     </div>
-    
-    <!-- actionにGitHubのURLを追加 -->
+
     <form id="uploadForm" action="https://github.com/Kurosepat/Spec-check-ver3" method="POST" enctype="multipart/form-data">
         <h3>明細書ファイルアップロード</h3>
-        <p>ここに明細書ファイルをドラッグ＆ドロップ またはクリックして選択</p>
-        <input type="file" id="docFile" name="docFile" accept=".docx">
+        <div class="file-upload-container" onclick="document.getElementById('docFile').click();">
+            <p>ここに明細書ファイルをドラッグ＆ドロップ またはクリックして選択</p>
+            <input type="file" id="docFile" name="docFile" accept=".docx">
+        </div>
         <p><strong>注：明細書はWordファイル(.docx)をご利用ください</strong></p>
 
         <h3>図面ファイルアップロード</h3>
-        <p>ここに図面ファイルをドラッグ＆ドロップ またはクリックして選択</p>
-        <input type="file" id="imageFile" name="imageFile" accept=".pdf">
+        <div class="file-upload-container" onclick="document.getElementById('imageFile').click();">
+            <p>ここに図面ファイルをドラッグ＆ドロップ またはクリックして選択</p>
+            <input type="file" id="imageFile" name="imageFile" accept=".pdf">
+        </div>
         <p><strong>注：図面はPDF（OCR処理推奨）ファイルをご利用ください。特に、ブロック図やフローチャートのように文字を含む場合は、OCR処理していない場合は精度が低下する可能性がありますので、OCR処理を強くお勧めします。</strong></p>
 
         <button type="submit">AIチェックを開始します</button>
