@@ -1,0 +1,26 @@
+name: Upload Files and Trigger AI Check
+
+on:
+  push:
+    branches:
+      - main  # mainブランチへのpushをトリガー
+
+jobs:
+  upload_files:
+    runs-on: ubuntu-latest  # 使用するOS（Ubuntu）
+
+    steps:
+      # 1. コードをチェックアウト
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # 2. Secretsを環境変数として使用
+      - name: Upload files to GitHub and trigger webhook
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}  # GitHubのAPIトークン
+          WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}  # Webhook URL
+        run: |
+          echo "Using GitHub Token and Webhook URL"
+          
+          # Node.jsコードでAPIを使ってファイルをアップロードする処理を実行
+          node uploadScript.js
