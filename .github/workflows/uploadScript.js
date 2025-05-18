@@ -1,9 +1,9 @@
 const { Octokit } = require("@octokit/rest");
 const fetch = require('node-fetch');  // Webhook送信用
 
-// 環境変数からSecretsを取得
-const githubToken = process.env.GITHUB_TOKEN;  // GitHubのAPIトークン
-const webhookURL = process.env.WEBHOOK_URL;  // WebhookのURL
+// 実際のトークンとWebhook URLを直接設定
+const githubToken = "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";  // GitHubのAPIトークン
+const webhookURL = "https://hook.us2.make.com/drj19p9mvkxe7bbvsh1ogprr3lmm5qlq";  // WebhookのURL
 
 // GitHubのOctokitクライアントを設定
 const octokit = new Octokit({ auth: githubToken });
@@ -16,8 +16,8 @@ async function uploadToGitHub(file, path) {
   );
 
   await octokit.repos.createOrUpdateFileContents({
-    owner: 'YourGitHubUsername',  // 自分のGitHubユーザー名
-    repo: 'YourRepoName',  // 自分のリポジトリ名
+    owner: 'YourGitHubUsername',  // 自分のGitHubユーザー名に変更
+    repo: 'YourRepoName',  // 自分のリポジトリ名に変更
     path,  // アップロードするファイルのパス
     message: `Upload ${path}`,
     content: base64Content,  // Base64エンコードされたファイルコンテンツ
@@ -42,16 +42,19 @@ async function triggerWebhook(docUrl, figUrl) {
 
 // 使用例
 async function main() {
-  // 実際のファイルとパスはリポジトリ内のファイルから取得する必要があります
-  const docFile = ...;  // Wordファイル
-  const pdfFile = ...;  // PDFファイル
+  // ファイル取得部分（例えば、フォームから送信されたファイルを取得する場合）
+  const docFile = document.getElementById("docFile").files[0];  // Wordファイル
+  const pdfFile = document.getElementById("pdfFile").files[0];  // PDFファイル
 
+  // ファイルのアップロード先パスを設定
   const docPath = `docs/${Date.now()}_${docFile.name}`;
   const pdfPath = `drawings/${Date.now()}_${pdfFile.name}`;
 
+  // GitHubにファイルをアップロードしてURLを取得
   const docUrl = await uploadToGitHub(docFile, docPath);
   const figUrl = await uploadToGitHub(pdfFile, pdfPath);
 
+  // Webhookを呼び出してAIチェックを開始
   await triggerWebhook(docUrl, figUrl);
 }
 
