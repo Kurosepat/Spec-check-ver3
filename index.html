@@ -119,15 +119,15 @@
     <form id="uploadForm" action="https://github.com/Kurosepat/Spec-check-ver3" method="POST" enctype="multipart/form-data">
         <h3>明細書ファイルアップロード</h3>
         <div class="file-upload-container" onclick="document.getElementById('docFile').click();">
-            <p>ここに明細書ファイルをドラッグ＆ドロップ またはクリックして選択</p>
-            <input type="file" id="docFile" name="docFile" accept=".docx">
+            <p id="docFileName">ここに明細書ファイルをドラッグ＆ドロップ またはクリックして選択</p>
+            <input type="file" id="docFile" name="docFile" accept=".docx" onchange="updateFileName('docFile', 'docFileName')">
         </div>
         <p><strong>注：明細書はWordファイル(.docx)をご利用ください</strong></p>
 
         <h3>図面ファイルアップロード</h3>
         <div class="file-upload-container" onclick="document.getElementById('imageFile').click();">
-            <p>ここに図面ファイルをドラッグ＆ドロップ またはクリックして選択</p>
-            <input type="file" id="imageFile" name="imageFile" accept=".pdf">
+            <p id="imageFileName">ここに図面ファイルをドラッグ＆ドロップ またはクリックして選択</p>
+            <input type="file" id="imageFile" name="imageFile" accept=".pdf" onchange="updateFileName('imageFile', 'imageFileName')">
         </div>
         <p><strong>注：図面はPDF（OCR処理推奨）ファイルをご利用ください。特に、ブロック図やフローチャートのように文字を含む場合は、OCR処理していない場合は精度が低下する可能性がありますので、OCR処理を強くお勧めします。</strong></p>
 
@@ -140,5 +140,14 @@
         <p>本ツールは完全なチェックを保証するものではありません。チェック結果は明細書の品質向上を目的とした参考情報としてご利用ください。</p>
         <p>図面や明細書中の画像（数式や写真等の画像）はチェック対象外です。</p>
     </div>
+
+    <script>
+        // ファイル選択時にファイル名を表示する関数
+        function updateFileName(inputId, displayId) {
+            var fileInput = document.getElementById(inputId);
+            var fileName = fileInput.files[0] ? fileInput.files[0].name : 'ファイルが選択されていません';
+            document.getElementById(displayId).textContent = fileName;
+        }
+    </script>
 </body>
 </html>
