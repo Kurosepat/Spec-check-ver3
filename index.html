@@ -21,20 +21,6 @@
             font-size: 2em;
         }
 
-        /* 注意事項のスタイル */
-        .warning-box {
-            background-color: #ffeb3b;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            font-size: 16px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            text-align: left;
-        }
-
         /* フォームスタイル */
         form {
             background-color: #fff;
@@ -64,7 +50,7 @@
             background-color: #e8f5e9;
             transition: background-color 0.3s, border-color 0.3s;
             text-align: center;
-            box-sizing: border-box; /* ボックスのサイズ計算にパディングを含める */
+            box-sizing: border-box;
         }
 
         .file-upload-container:hover {
@@ -95,6 +81,7 @@
             width: 100%;
             max-width: 300px;
             margin: 20px auto;
+            display: block;
         }
 
         button:hover {
@@ -110,15 +97,24 @@
         strong {
             color: #ff5722;
         }
+
+        /* 注意事項のスタイル（移動後） */
+        .warning-box {
+            background-color: #ffeb3b;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 30px;
+            font-size: 16px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+        }
     </style>
 </head>
 <body>
     <h1>明細書・特許請求の範囲・要約書AIチェック</h1>
-    <div class="warning-box">
-        <strong>【注意事項】</strong>
-        <p>本ツールは完全なチェックを保証するものではありません。チェック結果は明細書の品質向上を目的とした参考情報としてご利用ください。</p>
-        <p>図面や明細書中の画像（数式や写真等の画像）はチェック対象外です。</p>
-    </div>
 
     <form id="uploadForm" action="https://github.com/Kurosepat/Spec-check-ver3" method="POST" enctype="multipart/form-data">
         <h3>明細書ファイルアップロード</h3>
@@ -137,5 +133,12 @@
 
         <button type="submit">AIチェックを開始します</button>
     </form>
+
+    <!-- 注意事項を一番下に配置 -->
+    <div class="warning-box">
+        <strong>【注意事項】</strong>
+        <p>本ツールは完全なチェックを保証するものではありません。チェック結果は明細書の品質向上を目的とした参考情報としてご利用ください。</p>
+        <p>図面や明細書中の画像（数式や写真等の画像）はチェック対象外です。</p>
+    </div>
 </body>
 </html>
